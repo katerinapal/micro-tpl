@@ -1,6 +1,6 @@
-var gulp = require('gulp')
-  , jscs = require('gulp-jscs')
-  , mocha = require('gulp-mocha');
+import gulp from "gulp";
+import jscs from "gulp-jscs";
+import mocha from "gulp-mocha";
 
 gulp.task('mocha', function () {
   return gulp.src('./test/*.js', { read: false })

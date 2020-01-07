@@ -1,31 +1,45 @@
 {
-  "name": "micro-tpl",
-  "version": "0.4.1",
-  "description": "just a micro template",
-  "repository": "git://github.com/QQEDU/micro-tpl.git",
-  "main": "index.js",
-  "files": [
-    "index.js",
-    "lib/**/*.js"
-  ],
-  "dependencies": {
-    "utils-merge": "*",
-    "colors": "*",
-    "acorn": "*",
-    "mocha": "*"
-  },
-  "devDependencies": {
-    "gulp": "*",
-    "gulp-jscs": "*",
-    "gulp-mocha": "*",
-    "should": "*"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "keywords": [
-    "template"
-  ],
-  "author": "Daniel Yang <miniflycn@justany.net>",
-  "license": "MIT"
+    "name": "micro-tpl",
+    "version": "0.4.1",
+    "description": "just a micro template",
+    "repository": "git://github.com/QQEDU/micro-tpl.git",
+    "main": "index.js",
+    "files": [
+        "index.js",
+        "lib/**/*.js"
+    ],
+    "dependencies": {
+        "utils-merge": "*",
+        "colors": "*",
+        "acorn": "*",
+        "mocha": "*"
+    },
+    "devDependencies": {
+        "gulp": "*",
+        "gulp-jscs": "*",
+        "gulp-mocha": "*",
+        "should": "*",
+        "babel-cli": "latest",
+        "babel-core": "latest",
+        "babel-plugin-add-module-exports": "latest",
+        "babel-plugin-transform-es2015-modules-commonjs": "latest",
+        "babel-polyfill": "latest",
+        "babel-preset-env": "latest",
+        "babel-preset-es2015-without-strict": "latest"
+    },
+    "scripts": {
+        "test": "mocha",
+        "compile-testtestjs": "babel test\\test.js -o test\\test.js --require babel-polyfill --presets es2015-without-strict",
+        "compile-indexjs": "babel index.js -o index.js --require babel-polyfill --presets env",
+        "compile-libanalysejs": "babel lib\\analyse.js -o lib\\analyse.js --require babel-polyfill --presets es2015-without-strict",
+        "compile-libexplainjs": "babel lib\\explain.js -o lib\\explain.js --require babel-polyfill --presets es2015-without-strict",
+        "compile-testanalysejs": "babel test\\analyse.js -o test\\analyse.js --require babel-polyfill --presets es2015-without-strict",
+        "compile-1_script": "npm run compile-testtestjs && npm run compile-indexjs && npm run compile-libanalysejs && npm run compile-libexplainjs && npm run compile-testanalysejs",
+        "compile": "npm run compile-1_script"
+    },
+    "keywords": [
+        "template"
+    ],
+    "author": "Daniel Yang <miniflycn@justany.net>",
+    "license": "MIT"
 }

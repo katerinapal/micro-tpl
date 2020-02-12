@@ -1,7 +1,7 @@
-var tpl = require('../')
-  , fs = require('fs')
-  , path = require('path')
-  , should = require('should');
+import "../";
+import fs from "fs";
+import path from "path";
+import should from "should";
 
 function call(foo, it, opt) {
   return eval('(' + foo + ')(it, opt)');

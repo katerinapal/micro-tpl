@@ -1,7 +1,7 @@
-var analyse = require('../lib/analyse')
-  , fs = require('fs')
-  , path = require('path')
-  , should = require('should');
+import { analyse } from "../lib/analyse";
+import fs from "fs";
+import path from "path";
+import should from "should";
 
 describe('analyse', function () {
   it('should able to check no close tempalate', function () {

@@ -1,13 +1,13 @@
+import fs from "fs";
+import path from "path";
+import merge from "utils-merge";
+import { analyse } from "./lib/analyse";
 /**
  * Modified from grunt-yomb
  */
 'use strict';
 
-var fs = require('fs')
-  , path = require('path')
-  , merge = require('utils-merge')
-  , analyse = require('./lib/analyse')
-  , EOL = '\n';
+var EOL = '\n';
 
 function encode(str) {
   return str.replace(/"/g, '%22');
@@ -93,4 +93,5 @@ function build(tmpl, opt) {
     res.join('');
 }
 
-module.exports = build;
+var exported_build = build;
+export { exported_build as build };

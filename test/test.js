@@ -1,7 +1,5 @@
-var tpl = require('../')
-  , fs = require('fs')
-  , path = require('path')
-  , should = require('should');
+import { build as _buildjs } from "../";
+var fs = {}, path = {}, should = {};
 
 function call(foo, it, opt) {
   return eval('(' + foo + ')(it, opt)');
@@ -9,7 +7,7 @@ function call(foo, it, opt) {
 
 describe('micro-tpl', function () {
   it('should able to build a template have a variable "it"', function () {
-    var foo = tpl(
+    var foo = _buildjs(
       fs.readFileSync(path.join(__dirname, './tpl/it.html'), 
       { encoding: 'utf8' })
     );
@@ -17,7 +15,7 @@ describe('micro-tpl', function () {
   });
 
   it('should able to build a template have a variable "say"', function () {
-    var foo = tpl(
+    var foo = _buildjs(
       fs.readFileSync(path.join(__dirname, './tpl/render.html'), 
       { encoding: 'utf8' })
     );
@@ -25,7 +23,7 @@ describe('micro-tpl', function () {
   });
 
   it('should able to use loop', function () {
-    var foo = tpl(
+    var foo = _buildjs(
       fs.readFileSync(path.join(__dirname, './tpl/loop.html'), 
       { encoding: 'utf8' })
     );
@@ -34,7 +32,7 @@ describe('micro-tpl', function () {
 
   it('should able to include other template', function () {
     var p = path.join(__dirname, './tpl/include.html')
-      , foo = tpl(
+      , foo = _buildjs(
       fs.readFileSync(p, {  encoding: 'utf8' }),
       { path: p }
     );
@@ -44,7 +42,7 @@ describe('micro-tpl', function () {
 
   it('should able to deep include', function () {
     var p = path.join(__dirname, './tpl/deepInclude.html')
-      , foo = tpl(
+      , foo = _buildjs(
       fs.readFileSync(p, {  encoding: 'utf8' }),
       { path: p }
     );
@@ -54,7 +52,7 @@ describe('micro-tpl', function () {
 
   it('should throw a error if trying circular reference', function () {
     var p = path.join(__dirname, './tpl/circle1.html');
-    tpl.bind(
+    _buildjs.bind(
       null, 
       fs.readFileSync(p, {  encoding: 'utf8' }),
       { path: p }
@@ -62,7 +60,7 @@ describe('micro-tpl', function () {
   });
 
   it('should able to build a template have a variable "it" strict mode', function () {
-    var foo = tpl(
+    var foo = _buildjs(
       fs.readFileSync(
         path.join(__dirname, './tpl/it.html'), 
         { encoding: 'utf8' }
@@ -73,7 +71,7 @@ describe('micro-tpl', function () {
   });
 
   it('should not able to build a template have a variable "say" strict mode', function () {
-    var foo = tpl(
+    var foo = _buildjs(
       fs.readFileSync(
         path.join(__dirname, './tpl/render.html'), 
         { encoding: 'utf8' }
@@ -86,7 +84,7 @@ describe('micro-tpl', function () {
 
   it('should throw a error when render a bad template in safe mod', function () {
     var file = path.join(__dirname, './bad/noclose.html')
-      , foo = tpl.bind(
+      , foo = _buildjs.bind(
         null, 
         fs.readFileSync(
           file, 
@@ -98,7 +96,7 @@ describe('micro-tpl', function () {
 
   it('should throw a error when use ";" in interpolation', function () {
     var file = path.join(__dirname, './bad/semicolon.html')
-      , foo = tpl.bind(
+      , foo = _buildjs.bind(
         null, 
         fs.readFileSync(
           file, 
@@ -110,7 +108,7 @@ describe('micro-tpl', function () {
 
   it('should throw a error when use multi-lines in interpolation', function () {
     var file = path.join(__dirname, './bad/multiline.html')
-      , foo = tpl.bind(
+      , foo = _buildjs.bind(
         null, 
         fs.readFileSync(
           file, 
@@ -123,7 +121,7 @@ describe('micro-tpl', function () {
   it('should throw a error when finding unexpected token', function () {
     var file1 = path.join(__dirname, './bad/error.html')
       , file2 = path.join(__dirname, './bad/errorEval.html');
-    tpl.bind(
+    _buildjs.bind(
       null, 
       fs.readFileSync(
         file1, 
@@ -132,7 +130,7 @@ describe('micro-tpl', function () {
       { safe: true, path: file1 }
     ).should.throw();
 
-    tpl.bind(
+    _buildjs.bind(
       null,
       fs.readFileSync(
         file2, 
@@ -143,7 +141,7 @@ describe('micro-tpl', function () {
   });
 
   it('should able to build just function content', function () {
-    var foo = tpl(
+    var foo = _buildjs(
       fs.readFileSync(
         path.join(__dirname, './tpl/it.html'), 
         { encoding: 'utf8' }

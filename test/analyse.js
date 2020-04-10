@@ -1,11 +1,9 @@
-var analyse = require('../lib/analyse')
-  , fs = require('fs')
-  , path = require('path')
-  , should = require('should');
+import { analyse as libanalyse_analysejs } from "../lib/analyse";
+var fs = {}, path = {}, should = {};
 
 describe('analyse', function () {
   it('should able to check no close tempalate', function () {
-    analyse.bind(
+    libanalyse_analysejs.bind(
       null,
       fs.readFileSync(
         path.join(__dirname, './bad/noclose.html'), { encoding: 'utf8' }

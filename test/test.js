@@ -1,3 +1,4 @@
+"use strict";
 var tpl = require('../')
   , fs = require('fs')
   , path = require('path')

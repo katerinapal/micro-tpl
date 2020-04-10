@@ -1,3 +1,4 @@
+"use strict";
 var analyse = require('../lib/analyse')
   , fs = require('fs')
   , path = require('path')

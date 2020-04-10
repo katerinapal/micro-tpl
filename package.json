@@ -1,31 +1,43 @@
 {
-  "name": "micro-tpl",
-  "version": "0.4.1",
-  "description": "just a micro template",
-  "repository": "git://github.com/QQEDU/micro-tpl.git",
-  "main": "index.js",
-  "files": [
-    "index.js",
-    "lib/**/*.js"
-  ],
-  "dependencies": {
-    "utils-merge": "*",
-    "colors": "*",
-    "acorn": "*",
-    "mocha": "*"
-  },
-  "devDependencies": {
-    "gulp": "*",
-    "gulp-jscs": "*",
-    "gulp-mocha": "*",
-    "should": "*"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "keywords": [
-    "template"
-  ],
-  "author": "Daniel Yang <miniflycn@justany.net>",
-  "license": "MIT"
+    "name": "micro-tpl",
+    "version": "0.4.1",
+    "description": "just a micro template",
+    "repository": "git://github.com/QQEDU/micro-tpl.git",
+    "main": "index.js",
+    "files": [
+        "index.js",
+        "lib/**/*.js"
+    ],
+    "dependencies": {
+        "utils-merge": "*",
+        "colors": "*",
+        "acorn": "*",
+        "mocha": "*"
+    },
+    "devDependencies": {
+        "gulp": "*",
+        "gulp-jscs": "*",
+        "gulp-mocha": "*",
+        "should": "*",
+        "babel-cli": "latest",
+        "babel-core": "latest",
+        "babel-plugin-add-module-exports": "latest",
+        "babel-plugin-transform-es2015-modules-commonjs": "latest",
+        "babel-polyfill": "latest",
+        "babel-plugin-transform-object-rest-spread": "latest",
+        "babel-preset-env": "latest"
+    },
+    "scripts": {
+        "test": "mocha",
+        "compile-test": "babel test --out-dir test --require babel-polyfill --presets env",
+        "compile-lib": "babel lib --out-dir lib --require babel-polyfill --presets env",
+        "compile-indexjs": "babel index.js -o index.js --require babel-polyfill --presets env",
+        "compile-1_script": "npm run compile-test && npm run compile-lib && npm run compile-indexjs",
+        "compile": "npm run compile-1_script"
+    },
+    "keywords": [
+        "template"
+    ],
+    "author": "Daniel Yang <miniflycn@justany.net>",
+    "license": "MIT"
 }

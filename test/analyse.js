@@ -1,16 +1,25 @@
-import { analyse as libanalyse_analysejs } from "../lib/analyse";
-import fs from "fs";
-import path from "path";
-import should from "should";
+"use strict";
+
+var _analyse = require("../lib/analyse");
+
+var _fs = require("fs");
+
+var _fs2 = _interopRequireDefault(_fs);
+
+var _path = require("path");
+
+var _path2 = _interopRequireDefault(_path);
+
+var _should = require("should");
+
+var _should2 = _interopRequireDefault(_should);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 "use strict";
 
 describe('analyse', function () {
   it('should able to check no close tempalate', function () {
-    libanalyse_analysejs.bind(
-      null,
-      fs.readFileSync(
-        path.join(__dirname, './bad/noclose.html'), { encoding: 'utf8' }
-      )
-    ).should.throw();
+    _analyse.analyse.bind(null, _fs2.default.readFileSync(_path2.default.join(__dirname, './bad/noclose.html'), { encoding: 'utf8' })).should.throw();
   });
 });
